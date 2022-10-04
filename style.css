@@ -1,0 +1,368 @@
+/*
+Theme Name:HaloBlog
+Theme URI:
+Author: Halogen
+Author URI:
+Description: WordPressを学んで2回目
+Version: 1.0
+License:  GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+*/
+
+/* js CSS */
+/* hamburger */
+.thumbnail {
+  width: 100%;
+}
+.hamburger {
+  width: 50%;
+  max-width: 400px;
+  background: #fff;
+  height: 1000px;
+  z-index: 2000;
+  user-select: none;
+  /* position: relative; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-decoration: none;
+  transform: translateX(-2000px);
+  transition: transform 0.3s;
+  border-radius: 3px;
+}
+.mask_box {
+  background: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.hamburger.show {
+  transform: translateX(0);
+  transition: transform 0.4s;
+}
+
+/* current_category */
+li.current {
+  font-weight: bold;
+  border-bottom: 3px solid #000;
+}
+/* common */
+body {
+  font-family: Inter;
+}
+a {
+  text-decoration: none;
+}
+ul {
+  margin: 0;
+}
+.container_cate_article_all {
+  background-color: #fafafa;
+  padding-bottom: 200px;
+}
+.inner {
+  margin: 0 auto;
+  max-width: 100%;
+  width: 90%;
+}
+ul {
+  list-style: none;
+  text-decoration: none;
+}
+header {
+  position: relative;
+}
+.hero_header {
+  background: #000;
+}
+.hero_header img {
+  margin: 0 auto;
+
+  width: 200px;
+}
+
+.material_color {
+  color: #ffff;
+}
+.material-symbols-outlined.material_size {
+  font-size: 36px;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+.material-symbols-outlined.material_padding {
+  font-size: 36px;
+  position: relative;
+  top: 40px;
+  left: 40px;
+  cursor: pointer;
+  user-select: none;
+}
+.material-symbols-outlined.close_icon {
+  font-size: 36px;
+  position: relative;
+  top: 40px;
+  left: 40px;
+  cursor: pointer;
+  user-select: none;
+}
+.hamburger dl {
+  margin-top: 90px;
+}
+.hamburger dd {
+  padding-left: 40px;
+  margin-top: 20px;
+}
+.hamburger ul,
+.hamburger dl {
+  list-style: none;
+  position: relative;
+  top: 80px;
+  left: 50px;
+}
+.hamburger li + li {
+  margin-top: 20px;
+}
+.footer_back {
+  text-align: center;
+  background: #000;
+}
+/* index.html */
+
+/* header */
+
+/* main */
+
+/* category_choice_section */
+.container_category {
+  border-bottom: 1px solid rgb(86, 86, 86);
+  padding-top: 72px;
+  padding-bottom: 2px;
+
+  width: 100%;
+}
+
+.container_category .flex_category {
+  display: flex;
+}
+.container_category ul {
+  padding-left: 45px;
+}
+.container_category li {
+  cursor: pointer;
+  user-select: none;
+  font-size: 20px;
+  width: 80px;
+  text-align: center;
+}
+.container_category li:hover {
+  color: #999;
+}
+.container_category li.current {
+  color: #000;
+}
+.container_category li + li {
+  margin-left: 36px;
+}
+.article_category_border {
+  margin-top: 13px;
+  background: #ffffff;
+  border: 2px solid #000;
+  padding: 83px 0 123px;
+  position: relative;
+  overflow: hidden;
+  width: 75%;
+  border-radius: 4px;
+  /* height: 50%; */
+  border: 1px solid #999;
+  box-shadow: 0 8px 3px -3px rgba(0, 0, 0, 0.5);
+}
+.container_articles {
+  display: flex;
+  transition: transform 0.1s;
+}
+.blog_article {
+  /* border: 2px solid #000; */
+  margin: 0 auto;
+  width: 91%;
+  height: auto;
+  margin-bottom: 30px;
+  background: #ffffff;
+  border-radius: 4px;
+  /* height: 50%; */
+  border: 1px solid #dcdcdc;
+}
+.blog_article:hover {
+  border: 1px solid #000;
+}
+.news,
+.React,
+.PHP,
+.recommend {
+  min-width: 100%;
+  height: 100%;
+}
+.article_inner_blog {
+  margin: 0 auto;
+  width: 80%;
+}
+.recommend_section {
+  background: #f0f0f0;
+  padding: 24px 0 127px;
+}
+.recommend_h1 {
+  width: 79%;
+  margin: 0 auto;
+  font-size: 20px;
+  font-weight: Bold;
+}
+.choice_article_recommend_flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.recommend_section_frame {
+  margin-top: 40px;
+
+  /* width: 72%; */
+  margin: 40px auto 0;
+}
+/* スライドTO */
+.recommend_section_frame_container {
+  position: relative;
+  overflow: hidden;
+  width: 60%;
+}
+.recommend_section_flex {
+  display: flex;
+
+  justify-content: space-between;
+}
+.blog_article_recommend_section {
+  min-width: 100%;
+  height: 100%;
+  /* border: 2px solid #000; */
+  margin: 0 auto;
+  width: 91%;
+  margin-bottom: 14px;
+  background: #ffffff;
+  border-radius: 4px;
+  /* height: 50%; */
+  /* border: 1px solid #999; */
+}
+
+/* スライドEND */
+.material-symbols-outlined.arrow_left {
+  width: 42px;
+  height: 52px;
+  background: #fff;
+  border-radius: 3px;
+  padding: 13px;
+  border-radius: 4px;
+  border: 1px solid #999;
+}
+.material-symbols-outlined.arrow_left.arrow_none {
+  opacity: 0;
+  user-select: none;
+  pointer-events: none;
+}
+
+.material-symbols-outlined.right_arrow {
+  width: 42px;
+  height: 52px;
+  background: #fff;
+
+  padding: 13px;
+  border-radius: 4px;
+  border: 1px solid #999;
+}
+.material-symbols-outlined.right_arrow:hover,
+.material-symbols-outlined.arrow_left:hover {
+  border: 1px solid #000;
+  user-select: none;
+  background: rgba(251, 240, 240, 0.4);
+}
+.choice_recommend_section_frame {
+  width: 98%;
+  margin: 0 auto;
+}
+.to_top {
+  text-align: center;
+}
+.to_top a {
+  display: inline-block;
+  color: #000;
+}
+.material-symbols-outlined.triangle {
+  color: #000;
+  display: inline-block;
+}
+/* recommend_section */
+
+/* footer */
+.footer_back {
+  padding: 80px 48px;
+}
+.footer_back p {
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+}
+/* aside */
+.category_side_menu {
+  display: none;
+}
+@media screen and (min-width: 780px) {
+  /* common */
+
+  .container_category .flex_category {
+    justify-content: center;
+  }
+  .article_category_border {
+    margin-top: 30px;
+    padding: 103px 0px 103px;
+  }
+  .news,
+  .React,
+  .PHP,
+  .recommend {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: flex-start; */
+    /* margin: 0 auto; */
+  }
+  .blog_article {
+    /* border: 2px solid #000; */
+
+    width: 30%;
+    margin: 0 10px 30px 10px;
+    height: 430px;
+    flex-grow: 1;
+  }
+  /* おすすめ2 */
+
+  .recommend_section_flex {
+    flex-wrap: wrap;
+  }
+  .recommend_section_frame_container {
+    position: static;
+    overflow: initial;
+    width: 88%;
+  }
+  .blog_article_recommend_section {
+    width: 21%;
+    min-width: 0%;
+  }
+  .blog_article_recommend_section:hover {
+    border: 1px solid #000;
+  }
+  .material-symbols-outlined.right_arrow {
+    opacity: 0;
+    user-select: none;
+    pointer-events: none;
+  }
+}
