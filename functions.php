@@ -36,7 +36,7 @@ add_filter( 'document_title_separator', 'change_title_separator' );
 
 //抜粋の文字数を指定
 function custom_excerpt_length($length) {
-  return 140;
+  return 50;
 }
 add_filter('excerpt_length', 'custom_excerpt_length');
 

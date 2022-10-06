@@ -16,12 +16,18 @@
             <div class="news">
 
 
+<?php
 
-            <?php
-            if(have_posts()):
-              while(have_posts()):
-                the_post();
-                ?>
+$args = array(
+  'category_name' => 'news',
+  'posts_per_page' => 9
+);
+$the_query = new WP_Query($args);
+
+if ( $the_query->have_posts() ):
+while ( $the_query->have_posts() ):
+$the_query->the_post();
+?>
 
                <article class="blog_article">
              <a href="<?php the_permalink();?>">
@@ -35,8 +41,11 @@
               </article>
 
 
-                <?php endwhile;
-                  endif;?>
+               <?php
+               endwhile;
+              endif;
+              wp_reset_postdata();
+              ?>
 
 
 
@@ -44,47 +53,104 @@
 
             <!-- React -->
             <div class="React">
-              <article class="blog_article">
-                <h1>tesuserdgtfhjgkhto</h1>
+<!-- classを整える -->
+              <?php
+
+              $args = array(
+                'category_name' => 'React',
+                'posts_per_page' => 9
+              );
+              $the_query = new WP_Query($args);
+
+              if ( $the_query->have_posts() ):
+              while ( $the_query->have_posts() ):
+              $the_query->the_post();
+              ?>
+
+               <article class="blog_article">
+             <a href="<?php the_permalink();?>">
+                  <h3 class="thumbnail"><?php the_post_thumbnail('thumbnail')?></h3>
+                  <dl class="article_inner_blog">
+                    <dt><?php the_title();?></dt>
+                    <dd><?php the_time('Y年n月j日');?></dd>
+                    <dd><?php the_excerpt();?></dd>
+                  </dl>
+              </a>
               </article>
-              <article class="blog_article">
-                <h1>thhaao</h1>
-              </article>
-              <article class="blog_article">
-                <h1>tesuhgjklto</h1>
-              </article>
-              <article class="blog_article">
-                <h1>tehggjksuto</h1>
-              </article>
+
+
+               <?php
+               endwhile;
+              endif;
+              wp_reset_postdata();
+              ?>
+
+
             </div>
             <!-- PHP -->
             <div class="PHP">
-              <article class="blog_article">
-                <h1>PHPHPPHP</h1>
+               <?php
+
+              $args = array(
+                'category_name' => 'PHP',
+                'posts_per_page' => 9
+              );
+              $the_query = new WP_Query($args);
+
+              if ( $the_query->have_posts() ):
+              while ( $the_query->have_posts() ):
+              $the_query->the_post();
+              ?>
+
+               <article class="blog_article">
+             <a href="<?php the_permalink();?>">
+                  <h3 class="thumbnail"><?php the_post_thumbnail('thumbnail')?></h3>
+                  <dl class="article_inner_blog">
+                    <dt><?php the_title();?></dt>
+                    <dd><?php the_time('Y年n月j日');?></dd>
+                    <dd><?php the_excerpt();?></dd>
+                  </dl>
+              </a>
               </article>
-              <article class="blog_article">
-                <h1>PHPHPPHP</h1>
-              </article>
-              <article class="blog_article">
-                <h1>PHPHPPHP</h1>
-              </article>
-              <article class="blog_article">
-                <h1>PHPHPPHP</h1>
-              </article>
+
+
+               <?php
+               endwhile;
+              endif;
+              wp_reset_postdata();
+              ?>
             </div>
             <div class="recommend">
-              <article class="blog_article">
-                <h1>recommend</h1>
+               <?php
+
+              $args = array(
+                'category_name' => 'recommend',
+                'posts_per_page' => 9
+              );
+              $the_query = new WP_Query($args);
+
+              if ( $the_query->have_posts() ):
+              while ( $the_query->have_posts() ):
+              $the_query->the_post();
+              ?>
+
+               <article class="blog_article">
+             <a href="<?php the_permalink();?>">
+                  <h3 class="thumbnail"><?php the_post_thumbnail('thumbnail')?></h3>
+                  <dl class="article_inner_blog">
+                    <dt><?php the_title();?></dt>
+                    <dd><?php the_time('Y年n月j日');?></dd>
+                    <dd><?php the_excerpt();?></dd>
+                  </dl>
+              </a>
               </article>
-              <article class="blog_article">
-                <h1>recommend</h1>
-              </article>
-              <article class="blog_article">
-                <h1>recommend</h1>
-              </article>
-              <article class="blog_article">
-                <h1>recommend</h1>
-              </article>
+
+
+               <?php
+               endwhile;
+              endif;
+              wp_reset_postdata();
+              ?>
             </div>
           </div>
         </section>
