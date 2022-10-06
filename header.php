@@ -4,23 +4,11 @@
     <meta charset="<?php bloginfo('charset');?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="<?php bloginfo('description');?>">
-    <!-- <link
-      rel="stylesheet"
-      href="https://unpkg.com/modern-css-reset/dist/reset.min.css"
-    />
-
-    <link
-          rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round|Material+Icons+Sharp|Material+Icons+Two+Tone"
-
-    />
-
-
 
     <link
       rel="stylesheet"
       href="<?php echo get_stylesheet_uri();?>"
-    /> -->
+    />
 
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -38,7 +26,7 @@
       >
         menu
       </span>
-      <a href=""><img src="<?php echo get_theme_file_uri('images/logo.png" class="logo_size')?>" /></a>
+      <a href="">HaloBlog</a>
 
       <div class="hamburger">
         <span class="material-symbols-outlined close close_icon material-icons"> close </span>
