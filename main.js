@@ -24,20 +24,26 @@
    * スライド
    */
   // current_category
+
   const categories = document.querySelectorAll('.container_category ul li')
 
-  console.log(categories)
   const arrs = Array.from(categories)
 
-  const ay = arrs.find((arr) => arr.classList.contains('current'))
-  console.log(ay)
   const container_articles = document.querySelector('.container_articles')
-  let client_w = container_articles.clientWidth
-
+  let client_w
+  function setFn() {
+    client_w = container_articles.clientWidth
+    console.log(client_w, 'interval')
+    container_articles.style.width = client_w
+  }
+  setInterval(setFn, 10)
+  console.log(client_w, 'test')
+  // setFn()
   let currentIndex = 0
 
   arrs.forEach((category) => {
     category.addEventListener('click', () => {
+      console.log(client_w, 'dfguilho;gfdxhghgfxg')
       currentIndex = 0
       arrs.forEach((el) => {
         //   全ての要素からli.currentをremove
