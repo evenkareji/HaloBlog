@@ -31,7 +31,7 @@ $the_query->the_post();
 
                <article class="blog_article">
              <a href="<?php the_permalink();?>">
-                  <h3 class="thumbnail"><?php the_post_thumbnail('thumbnail')?></h3>
+                  <h3 class="thumbnail"><?php the_post_thumbnail( array( 358, 305 ))?></h3>
                   <dl class="article_inner_blog">
                     <dt><?php the_title();?></dt>
                     <dd><?php the_time('Y年n月j日');?></dd>
@@ -69,7 +69,7 @@ $the_query->the_post();
 
                <article class="blog_article">
              <a href="<?php the_permalink();?>">
-                  <h3 class="thumbnail"><?php the_post_thumbnail('thumbnail')?></h3>
+                  <h3 class="thumbnail"><?php the_post_thumbnail(array( 328, 185 ))?></h3>
                   <dl class="article_inner_blog">
                     <dt><?php the_title();?></dt>
                     <dd><?php the_time('Y年n月j日');?></dd>
@@ -104,7 +104,7 @@ $the_query->the_post();
 
                <article class="blog_article">
              <a href="<?php the_permalink();?>">
-                  <h3 class="thumbnail"><?php the_post_thumbnail('thumbnail')?></h3>
+                  <h3 class="thumbnail"><?php the_post_thumbnail(array( 328, 185 ))?></h3>
                   <dl class="article_inner_blog">
                     <dt><?php the_title();?></dt>
                     <dd><?php the_time('Y年n月j日');?></dd>
@@ -136,7 +136,7 @@ $the_query->the_post();
 
                <article class="blog_article">
              <a href="<?php the_permalink();?>">
-                  <h3 class="thumbnail"><?php the_post_thumbnail('thumbnail')?></h3>
+                  <h3 class="thumbnail"><?php the_post_thumbnail(array( 328, 185 ))?></h3>
                   <dl class="article_inner_blog">
                     <dt><?php the_title();?></dt>
                     <dd><?php the_time('Y年n月j日');?></dd>
@@ -165,29 +165,37 @@ $the_query->the_post();
           </span>
           <div class="recommend_section_frame_container">
             <div class="recommend_section_flex recommend_section_frame">
-              <article class="blog_article_recommend_section">
-                <div class="article_inner_blog">
-                  <h1>tesuto0</h1>
-                </div>
+                <?php
+
+              $args = array(
+                'category_name' => 'recommend,news,未分類',
+                'posts_per_page' => 8
+              );
+              $the_query = new WP_Query($args);
+
+              if ( $the_query->have_posts() ):
+              while ( $the_query->have_posts() ):
+              $the_query->the_post();
+              ?>
+
+               <article class="blog_article_recommend_section">
+             <a href="<?php the_permalink();?>">
+                  <h3 class="thumbnail"><?php the_post_thumbnail(array( 300, 200 ))?></h3>
+                  <dl class="article_inner_blog">
+                    <dt><?php the_title();?></dt>
+                    <dd><?php the_time('Y年n月j日');?></dd>
+                    <dd><?php the_excerpt();?></dd>
+                  </dl>
+              </a>
               </article>
 
-              <article class="blog_article_recommend_section">
-                <div class="article_inner_blog">
-                  <h1>tesuto1</h1>
-                </div>
-              </article>
 
-              <article class="blog_article_recommend_section">
-                <div class="article_inner_blog">
-                  <h1>tesuto2</h1>
-                </div>
-              </article>
+               <?php
+               endwhile;
+              endif;
+              wp_reset_postdata();
+              ?>
 
-              <article class="blog_article_recommend_section">
-                <div class="article_inner_blog">
-                  <h1>tesuto3</h1>
-                </div>
-              </article>
             </div>
           </div>
           <span class="material-symbols-outlined material-icons right_arrow" id="rightArrow">
@@ -213,9 +221,7 @@ $the_query->the_post();
         </dl>
       </aside>
     </main>
-    <footer class="footer_back">
-      <p>@HaloBlog</p>
-    </footer>
+    <?php get_footer();?>
     <script src="main.js"></script>
     <?php wp_footer();?>
   </body>

@@ -26,14 +26,14 @@
       >
         menu
       </span>
-      <a href="">HaloBlog</a>
+      <a href="" class="HaloBlog">HaloBlog</a>
 
       <div class="hamburger">
         <span class="material-symbols-outlined close close_icon material-icons"> close </span>
-        <ul>
-          <li><a href="<?php echo home_url('/')?>">home</a></li>
-          <li><a href="<?php echo home_url('/about/')?>">about</a></li>
-          <li><a href="<?php echo home_url('contact')?>">contact</a></li>
+        <ul class="nav-click-currents-color">
+          <li class="nav-current" id="home"><a href="<?php echo home_url('/')?>" >home</a></li>
+          <li id="about"><a href="<?php echo home_url('index.php/about/')?>">about</a></li>
+          <li id="contact"><a href="<?php echo home_url('index.php/contact')?>">contact</a></li>
         </ul>
         <dl>
           <dt>全てのカテゴリー</dt>

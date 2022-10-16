@@ -9,16 +9,38 @@
   const hamburgerMenuClose = document.querySelector('.close')
   const hamburgerMenu = document.querySelector('.hamburger')
   const mask = document.getElementById('mask')
-  hamburgerMenuOpen.addEventListener('click', () => {
-    hamburgerMenu.classList.add('show')
-    mask.classList.add('mask_box')
-  })
+  // hamburgerMenuOpen.addEventListener('click', () => {
+  //   hamburgerMenu.classList.add('show')
+  //   mask.classList.add('mask_box')
+  // })
 
-  hamburgerMenuClose.addEventListener('click', () => {
-    hamburgerMenu.classList.remove('show')
-    mask.classList.remove('mask_box')
-  })
+  // close処理のfunction
+  // maskとcloseをfunction化
+  closeFn(mask)
+  closeFn(hamburgerMenuClose)
+  closeFn(hamburgerMenuOpen)
+  function closeFn(HumbergarBtnClick) {
+    if (HumbergarBtnClick === hamburgerMenuOpen) {
+      HumbergarBtnClick.addEventListener('click', () => {
+        hamburgerMenu.classList.add('show')
+        mask.classList.add('mask_box')
+      })
+    } else if (
+      (HumbergarBtnClick === mask) |
+      (HumbergarBtnClick === hamburgerMenuClose)
+    ) {
+      HumbergarBtnClick.addEventListener('click', () => {
+        hamburgerMenu.classList.remove('show')
+        mask.classList.remove('mask_box')
+      })
+    }
+  }
 
+  // ハンバーガーナビカレント
+  const navListsNode = document.querySelectorAll('.nav-click-currents-color li')
+  // 配列化
+  const navListsArr = Array.from(navListsNode)
+  console.log(navListsArr, 'current')
   /**
    * カテゴリー
    * スライド
@@ -36,7 +58,10 @@
     console.log(client_w, 'interval')
     container_articles.style.width = client_w
   }
-  setInterval(setFn, 10)
+  // 固定ページエラー
+
+  setInterval(setFn, 1000)
+
   console.log(client_w, 'test')
   // setFn()
   let currentIndex = 0
@@ -112,8 +137,17 @@
     '.blog_article_recommend_section',
   )
   console.log(blog_article_recommend_section)
-  let recommend_section_frame_width = recommend_section_frame.clientWidth
 
+  let recommend_section_frame_width
+  function recoFn() {
+    recommend_section_frame_width = recommend_section_frame.clientWidth
+
+    container_articles.style.width = recommend_section_frame_width
+    console.log(recommend_section_frame_width, 'fn内部')
+  }
+  // 固定ページエラー
+  setInterval(recoFn, 1000)
+  console.log(recommend_section_frame_width, 'recoWidth')
   let countRecommend = 0
   function Arrow() {
     countRecommend === 0
@@ -121,6 +155,7 @@
       : leftArrow.classList.remove('arrow_none')
     return {
       rightArrowFn: function () {
+        console.log(recommend_section_frame_width, '非同期width変数')
         console.log(countRecommend)
 
         countRecommend++
@@ -165,6 +200,9 @@
     // rightArrowFnのreturn で返ったcountRecommendをArrow()内の  countRecommend === 0
     //   ? leftArrow.classList.add('arrow_none')
     //   : leftArrow.classList.remove('arrow_none')で更新するため
+
+    // 固定ページエラー
+
     Arrow()
   })
 
@@ -215,6 +253,7 @@
   // Arrow(leftArrow)
   // Arrow(rightArrow)
 
+  // テスト
   let firstVal = 9
   function fn() {
     return {
