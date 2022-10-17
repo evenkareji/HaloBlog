@@ -135,6 +135,12 @@ li.nav-current a:hover {
   font-weight: bold;
   user-select: none;
 }
+.hamburger dt {
+  font-weight: bold;
+}
+.hamburger dd:hover {
+  color: #999;
+}
 .hamburger dl {
   margin-top: 90px;
 }

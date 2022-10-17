@@ -33,10 +33,20 @@
   }
 
   // ハンバーガーナビカレント
+  // 画面遷移して元に戻る保留
   const navListsNode = document.querySelectorAll('.nav-click-currents-color li')
   // 配列化
-  const navListsArr = Array.from(navListsNode)
-  console.log(navListsArr, 'current')
+  const navListsArrs = Array.from(navListsNode)
+
+  navListsArrs.forEach((navListsArr) => {
+    navListsArr.addEventListener('click', () => {
+      navListsArrs.forEach((navListsArrEachs) => {
+        navListsArrEachs.classList.remove('nav-current')
+      })
+
+      navListsArr.classList.add('nav-current')
+    })
+  })
   /**
    * カテゴリー
    * スライド
