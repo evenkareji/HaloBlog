@@ -349,6 +349,66 @@ li.nav-current a:hover {
 .category_side_menu {
   display: none;
 }
+/* single.PHP */
+.mainArticle-aside-bg-color {
+  padding: 27px 0 42px;
+  background: #fafafa;
+}
+.aside-category-recommend {
+  display: none;
+  /* width: 72%; */
+}
+.main-article-border {
+  border-radius: 3px;
+  padding: 30px 0;
+  width: 89%;
+  background: #fff;
+  border: 1px solid #999;
+}
+
+.main-article {
+  width: 94%;
+}
+/* single_PC */
+@media screen and (min-width: 780px) {
+  .top {
+    display: flex;
+    gap: 63px;
+  }
+  .aside-category-recommend {
+    display: block;
+    width: 300px;
+    background: #fff;
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding-left: 26px;
+    padding-top: 78px;
+    padding-bottom: 157px;
+  }
+  .aside-category-recommend dl {
+    margin-bottom: 40px;
+    width: 189px;
+  }
+
+  .aside-category-recommend dt {
+    font-weight: bold;
+    margin-bottom: 14px;
+  }
+  .aside-category-recommend dd {
+    padding: 3px;
+    width: 100px;
+  }
+  .aside-category-recommend dd:hover {
+    color: #999;
+    cursor: pointer;
+  }
+  .main-article-border {
+    width: 51%;
+    margin: 0;
+  }
+}
+
+/* index.php PC */
 @media screen and (min-width: 500px) {
   .container_category {
     width: 100%;

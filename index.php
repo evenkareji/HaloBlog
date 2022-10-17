@@ -30,7 +30,7 @@ $the_query->the_post();
 ?>
 
                <article class="blog_article">
-             <a href="<?php the_permalink();?>">
+             <a href="<?php the_permalink(); ?>">
                   <h3 class="thumbnail"><?php the_post_thumbnail( array( 358, 305 ))?></h3>
                   <dl class="article_inner_blog">
                     <dt><?php the_title();?></dt>
@@ -222,7 +222,7 @@ $the_query->the_post();
       </aside>
     </main>
     <?php get_footer();?>
-    <script src="main.js"></script>
+
     <?php wp_footer();?>
   </body>
 </html>

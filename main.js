@@ -9,10 +9,6 @@
   const hamburgerMenuClose = document.querySelector('.close')
   const hamburgerMenu = document.querySelector('.hamburger')
   const mask = document.getElementById('mask')
-  // hamburgerMenuOpen.addEventListener('click', () => {
-  //   hamburgerMenu.classList.add('show')
-  //   mask.classList.add('mask_box')
-  // })
 
   // close処理のfunction
   // maskとcloseをfunction化
@@ -52,17 +48,22 @@
   const arrs = Array.from(categories)
 
   const container_articles = document.querySelector('.container_articles')
-  let client_w
-  function setFn() {
-    client_w = container_articles.clientWidth
-    console.log(client_w, 'interval')
-    container_articles.style.width = client_w
-  }
+
+  // function setFn() {
+
+  // widthを動的に変化させるために非同期を扱いたい
+  // setIntervalを使ったがabout
+  // contactでエラーが出る
+  let client_w = container_articles.clientWidth
+
+  //   console.log(client_w, 'interval')
+  //   container_articles.style.width = client_w
+  // }
   // 固定ページエラー
 
-  setInterval(setFn, 1000)
+  // setInterval(setFn, 1000)
 
-  console.log(client_w, 'test')
+  // console.log(client_w, 'test')
   // setFn()
   let currentIndex = 0
 
@@ -96,37 +97,6 @@
     })
   })
 
-  // slideForEach(arrs)
-  // function slideForEach(allSample) {
-  //   allSample.forEach((sampleCategory) => {
-  //     sampleCategory.addEventListener('click', () => {
-  //       currentIndex = 0
-  //       sampleCategory.classList.add('current')
-  //       doubleForEach(allSample)
-  //       container_articles.style.transform = `translateX(${
-  //         -1 * client_w * currentIndexMultiply
-  //       }px)`
-  //     })
-  //   })
-  // }
-
-  // function doubleForEach(sampleForEach) {
-  //   sampleForEach.forEach((sinpleForEach) => {
-  //     sinpleForEach.classList.remove('current')
-
-  //     let t = sinpleForEach.classList.contains('current')
-  //     console.log(t)
-  //     if (true === t) {
-  //       console.log(currentIndex)
-  //       // return currentIndex
-  //       currentIndexMultiply = currentIndex
-  //       console.log(currentIndexMultiply)
-  //     } else {
-  //       ++currentIndex
-  //     }
-  //   })
-  // }
-
   const rightArrow = document.getElementById('rightArrow')
   const leftArrow = document.getElementById('leftArrow')
 
@@ -146,7 +116,8 @@
     console.log(recommend_section_frame_width, 'fn内部')
   }
   // 固定ページエラー
-  setInterval(recoFn, 1000)
+  // setInterval(recoFn, 1000)
+
   console.log(recommend_section_frame_width, 'recoWidth')
   let countRecommend = 0
   function Arrow() {
@@ -205,53 +176,6 @@
 
     Arrow()
   })
-
-  // console.log(recommend_section_frame_width)
-  // function Arrow(arrow) {
-  //   console.log('h')
-  //   // recommend_section_frame.style.width = recommend_section_frame_width
-  //   // console.log(recommend_section_frame_width)
-  //   let countRecommend = 1
-  //   // let leftCount
-  //   leftArrow.classList.add('arrow_none')
-  //   arrow.addEventListener('click', () => {
-  //     // console.log(arrow)
-
-  //     switch (arrow) {
-  //       case rightArrow:
-  //         console.log('h')
-  //         recommend_section_frame.style.transform = `translateX(${
-  //           -1 * recommend_section_frame_width * countRecommend
-  //         }px)`
-  //         if (blog_article_recommend_section.length < countRecommend + 1) {
-  //           countRecommend = 0
-
-  //           recommend_section_frame.style.transform = `translateX(${
-  //             -1 * recommend_section_frame_width * countRecommend
-  //           }px)`
-  //         }
-  //         countRecommend++
-  //         countRecommend === 1
-  //           ? leftArrow.classList.add('arrow_none')
-  //           : leftArrow.classList.remove('arrow_none')
-  //         console.log(countRecommend)
-
-  //         return countRecommend
-
-  //         break
-
-  //       case leftArrow:
-  //         console.log(countRecommend)
-
-  //         // recommend_section_frame.style.transform = `translateX(${
-  //         //   -1 * recommend_section_frame_width * countRecommend + 1
-  //         // }px)`
-  //         break
-  //     }
-  //   })
-  // }
-  // Arrow(leftArrow)
-  // Arrow(rightArrow)
 
   // テスト
   let firstVal = 9
