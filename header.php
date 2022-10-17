@@ -35,12 +35,10 @@
           <li id="about"><a href="<?php echo home_url('index.php/about/')?>">about</a></li>
           <li id="contact"><a href="<?php echo home_url('index.php/contact')?>">contact</a></li>
         </ul>
-        <dl>
-          <dt>全てのカテゴリー</dt>
-          <dd>非同期処理</dd>
-          <dd>デザイン</dd>
-          <dd>UXデザイン</dd>
-        </dl>
+                <div class="sidebar">
+                        <?php get_sidebar(); ?>
+
+</div>
       </div>
       <div id="mask"></div>
     </header>
