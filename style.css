@@ -159,6 +159,9 @@ li.nav-current a:hover {
 .hamburger li + li {
   margin-top: 20px;
 }
+.flick-event {
+  overflow: hidden;
+}
 .footer_back {
   text-align: center;
   background: #000;
@@ -175,9 +178,18 @@ li.nav-current a:hover {
   padding-top: 72px;
   padding-bottom: 2px;
 
-  width: 480px;
+  /* width: 480px; */
 }
+.overflow-flick {
+  white-space: nowrap;
+  overflow: scroll;
+  /* width: 480px; */
+  /* width: 400px; */
 
+  background: skyblue;
+  /* position: relative; */
+  /* background-color: #000; */
+}
 .container_category .flex_category {
   display: flex;
 }

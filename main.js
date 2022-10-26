@@ -35,8 +35,9 @@
   // ハンバーガーナビカレント
   // 画面遷移して元に戻る保留
   const navListsNode = document.querySelectorAll('.nav-click-currents-color li')
-  // 配列化
+  // 配列風オブジェクト化
   const navListsArrs = Array.from(navListsNode)
+  console.log(typeof navListsArrs)
 
   navListsArrs.forEach((navListsArr) => {
     navListsArr.addEventListener('click', () => {
@@ -56,6 +57,11 @@
   const categories = document.querySelectorAll('.container_category ul li')
 
   const arrs = Array.from(categories)
+  console.log(typeof arrs)
+  let p = arrs.filter((arr) => {
+    return arr.classList.contains('current')
+  })
+  console.log(p, 'filter')
 
   const container_articles = document.querySelector('.container_articles')
 
@@ -65,7 +71,9 @@
   // setIntervalを使ったがabout
   // contactでエラーが出る
   let client_w = container_articles.clientWidth
-
+  window.addEventListener('resize', () => {
+    client_w = container_articles.clientWidth
+  })
   //   console.log(client_w, 'interval')
   //   container_articles.style.width = client_w
   // }
@@ -100,7 +108,7 @@
       })
 
       // let t = category.classList.contains('current')
-
+      // client_wリサイズで計算する
       container_articles.style.transform = `translateX(${
         -1 * client_w * currentIndexMultiply
       }px)`
@@ -127,7 +135,8 @@
   }
   // 固定ページエラー
   // setInterval(recoFn, 1000)
-
+  // 配列から一つずれるから*-1して移動すレバいい
+  // 元々の配列の先頭が一番前の時*1する
   console.log(recommend_section_frame_width, 'recoWidth')
   let countRecommend = 0
   function Arrow() {
@@ -208,4 +217,65 @@
   const valfb = fn()
   valfb.firstFn()
   valfb.secondFn()
+
+  // local JS testで加える
+  // Filter関数でclickしたものを絞り、map関数でlisを絞ったものを先頭に配列を新たに作り、表示する
+
+  // 定数名が分かりにくいので再代入
+  // let categoryArrs = arrs
+  // let u = []
+  // console.log(categoryArrs, 'flicevent')
+  // u = arrs
+  // console.log(u)
+  // console.log(typeof u)
+  // const resul = u.filter((word) => word.length > 6)
+  // console.log(resul)
+  // categoryArrs.unshift('u', 'k')
+  // console.log(categoryArrs)
+  // クリックしたliを先頭に移動
+
+  // let ordercategoryArrs = categoryArrs.unshift(
+  //   categoryArrs.filter((categoryArr) =>
+  //     categoryArr.classList.contains('current'),
+  //   ),
+  // )
+  // let ar = []
+  // // console.log(ordercategoryArrs)
+  // const arrResult = categoryArrs.filter(
+  //   (categoryAr) => categoryAr.classList.contain('current'),
+  //   //   .map((categoryArr) => {
+  //   //   ar = categoryArr
+  //   //   console.log(ar)
+  //   // }),
+  // )
+  // console.log(arrResult)
+
+  // console.log(result)
+
+  // console.log(categoryArr)
+
+  /**
+   * unshiftがappendChildに置き換えられて
+   * spliceがNode.removeChild()になる
+   */
+
+  let currentCategoryText
+  arrs.forEach((arr) => {
+    arr.addEventListener('click', () => {
+      arrs.unshift(arrs.find((arr) => arr.classList.contains('current')))
+      currentCategoryText = arrs.find((arr) =>
+        arr.classList.contains('current'),
+      )
+    })
+  })
+  setTimeout(() => {
+    console.log(arrs)
+    console.log(currentCategoryText)
+  }, 3000)
+  // setTimeout(() => {
+  //   console.log(arrs)
+  //   console.log(currentCategoryText)
+  // }, 10000)
+
+  // setInterval(jji)
 }

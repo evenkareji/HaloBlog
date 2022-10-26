@@ -1,12 +1,14 @@
 <?php get_header();?>
     <main>
       <div class="container_cate_article_all">
-        <div class="container_category">
+        <div class="container_category overflow-flick">
           <ul class="flex_category" id="categories">
             <li class="current"><a>最新</a></li>
             <li><a>React</a></li>
             <li><a>PHP</a></li>
             <li><a>おすすめ</a></li>
+            <li><a>進行中の企画</a></li>
+
           </ul>
         </div>
 
