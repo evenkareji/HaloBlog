@@ -54,9 +54,13 @@
    */
   // current_category
 
-  const categories = document.querySelectorAll('.container_category ul li')
+  let categories = document.querySelectorAll('.container_category ul li')
 
-  const arrs = Array.from(categories)
+  let ddd = []
+  ddd = categories
+  console.log(ddd, 'nodeを配列に入れた')
+
+  let arrs = Array.from(categories)
   console.log(typeof arrs)
   let p = arrs.filter((arr) => {
     return arr.classList.contains('current')
@@ -258,11 +262,27 @@
    * unshiftがappendChildに置き換えられて
    * spliceがNode.removeChild()になる
    */
+  // 最初のnodeをletで取得してクリックするたびにappendする
+  // 最後にcurrent部分んだけinsertBeforeを用いる
+  let scroll = document.getElementById('overflow-flick')
+  document.body.addEventListener('click', () => {
+    scroll.scrollLeft = 0
+  })
 
+  let ul = document.getElementById('categories')
+  let startNode
   let currentCategoryText
   arrs.forEach((arr) => {
     arr.addEventListener('click', () => {
-      arrs.unshift(arrs.find((arr) => arr.classList.contains('current')))
+      //クリックイベントを追加
+
+      window.scroll({ left: 0, behavior: 'smooth' })
+
+      let theFirstChild = ul.firstChild
+      startNode = ul.insertBefore(
+        arrs.find((arr) => arr.classList.contains('current')),
+        theFirstChild,
+      )
       currentCategoryText = arrs.find((arr) =>
         arr.classList.contains('current'),
       )
@@ -271,6 +291,7 @@
   setTimeout(() => {
     console.log(arrs)
     console.log(currentCategoryText)
+    console.log(startNode, 'startNode')
   }, 3000)
   // setTimeout(() => {
   //   console.log(arrs)
@@ -278,4 +299,6 @@
   // }, 10000)
 
   // setInterval(jji)
+
+  // すべてのliに同じmargin-rightとmargin-leftをつけたらレイアウトは崩れない
 }

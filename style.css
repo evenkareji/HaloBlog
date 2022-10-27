@@ -195,6 +195,7 @@ li.nav-current a:hover {
 }
 .container_category ul {
   padding-left: 45px;
+  width: 800px;
 }
 .container_category li {
   cursor: pointer;
@@ -202,6 +203,7 @@ li.nav-current a:hover {
   font-size: 20px;
   width: 80px;
   text-align: center;
+  margin-right: 18px;
 }
 .container_category li:hover {
   color: #999;
