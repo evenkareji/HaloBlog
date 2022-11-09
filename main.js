@@ -1,304 +1,225 @@
-'use-strict'
+'use-strict';
 {
-  /**
-   *hamburgerMenu
-   *
-   */
+  let $ul = document.getElementById('categories');
+  let li;
+  let a;
+  let INIT_CATEGORIES;
+  categoriesLists();
+  function categoriesLists() {
+    INIT_CATEGORIES = ['最新', 'React', 'PHP', 'おすすめ', '進行中の企画'];
+    for (i = 0; i < INIT_CATEGORIES.length; ++i) {
+      li = document.createElement('li');
+      a = document.createElement('a');
+      li.appendChild(a);
+      a.textContent = INIT_CATEGORIES[i];
+      if (a.textContent === '最新') {
+        li.classList.add('current');
+      }
+      $ul.appendChild(li);
+    }
+  }
+  function init(fff) {
+    for (i = 0; i < INIT_CATEGORIES.length; ++i) {
+      if (INIT_CATEGORIES[i] != fff) {
+        li = document.createElement('li');
+        a = document.createElement('a');
+        li.appendChild(a);
+        a.textContent = INIT_CATEGORIES[i];
 
-  const hamburgerMenuOpen = document.querySelector('.open')
-  const hamburgerMenuClose = document.querySelector('.close')
-  const hamburgerMenu = document.querySelector('.hamburger')
-  const mask = document.getElementById('mask')
-
-  // close処理のfunction
-  // maskとcloseをfunction化
-  closeFn(mask)
-  closeFn(hamburgerMenuClose)
-  closeFn(hamburgerMenuOpen)
-  function closeFn(HumbergarBtnClick) {
-    if (HumbergarBtnClick === hamburgerMenuOpen) {
-      HumbergarBtnClick.addEventListener('click', () => {
-        hamburgerMenu.classList.add('show')
-        mask.classList.add('mask_box')
-      })
-    } else if (
-      (HumbergarBtnClick === mask) |
-      (HumbergarBtnClick === hamburgerMenuClose)
-    ) {
-      HumbergarBtnClick.addEventListener('click', () => {
-        hamburgerMenu.classList.remove('show')
-        mask.classList.remove('mask_box')
-      })
+        $ul.appendChild(li);
+      }
     }
   }
 
-  // ハンバーガーナビカレント
-  // 画面遷移して元に戻る保留
-  const navListsNode = document.querySelectorAll('.nav-click-currents-color li')
-  // 配列風オブジェクト化
-  const navListsArrs = Array.from(navListsNode)
-  console.log(typeof navListsArrs)
+  const openHumburger = document.querySelector('.open');
+  const closeHamburger = document.querySelector('.close');
+  const hamburgerMenu = document.querySelector('.hamburger');
+  const mask = document.getElementById('mask');
+  const humburgerFn = Humburger();
+  humburgerFn(openHumburger);
+  humburgerFn(closeHamburger);
+  humburgerFn(mask);
+  function Humburger() {
+    function clickHumbergerEvent(clickHumbergar) {
+      if (clickHumbergar === openHumburger) {
+        clickHumbergar.addEventListener('click', () => {
+          hamburgerMenu.classList.add('show');
+          mask.classList.add('mask_box');
+        });
+      } else if (
+        (clickHumbergar === mask) |
+        (clickHumbergar === closeHamburger)
+      ) {
+        clickHumbergar.addEventListener('click', () => {
+          hamburgerMenu.classList.remove('show');
+          mask.classList.remove('mask_box');
+        });
+      }
+    }
+    return clickHumbergerEvent;
+  }
 
-  navListsArrs.forEach((navListsArr) => {
-    navListsArr.addEventListener('click', () => {
-      navListsArrs.forEach((navListsArrEachs) => {
-        navListsArrEachs.classList.remove('nav-current')
-      })
+  const $navLists = document.querySelectorAll('.nav-click-currents-color li');
 
-      navListsArr.classList.add('nav-current')
-    })
-  })
-  /**
-   * カテゴリー
-   * スライド
-   */
-  // current_category
+  const navLists = Array.from($navLists);
 
-  let categories = document.querySelectorAll('.container_category ul li')
+  navLists.forEach((navList) => {
+    navList.addEventListener('click', () => {
+      navLists.forEach((navAllLists) => {
+        navAllLists.classList.remove('nav-current');
+      });
+      // クリックしたliにadd
+      navList.classList.add('nav-current');
+    });
+  });
 
-  let ddd = []
-  ddd = categories
-  console.log(ddd, 'nodeを配列に入れた')
+  let categories = document.querySelectorAll('.container_category ul li');
 
-  let arrs = Array.from(categories)
-  console.log(typeof arrs)
-  let p = arrs.filter((arr) => {
-    return arr.classList.contains('current')
-  })
-  console.log(p, 'filter')
+  let arrs = Array.from(categories);
 
-  const container_articles = document.querySelector('.container_articles')
+  const container_articles = document.querySelector('.container_articles');
+  console.log(container_articles);
 
-  // function setFn() {
+  console.log(container_articles != null);
 
-  // widthを動的に変化させるために非同期を扱いたい
-  // setIntervalを使ったがabout
-  // contactでエラーが出る
-  let client_w = container_articles.clientWidth
-  window.addEventListener('resize', () => {
-    client_w = container_articles.clientWidth
-  })
-  //   console.log(client_w, 'interval')
-  //   container_articles.style.width = client_w
-  // }
-  // 固定ページエラー
+  let client_w = null;
+  if (container_articles != null) {
+    client_w = container_articles.clientWidth;
+  }
+  const flickRange = document.querySelector('.article_category_border');
+  flickRange.addEventListener('touchstart', slideCategory);
+  slideCategory();
+  function slideCategory() {
+    let currentIndex = 0;
 
-  // setInterval(setFn, 1000)
+    arrs.forEach((category) => {
+      category.addEventListener('click', () => {
+        console.log('click');
+        currentIndex = 0;
+        arrs.forEach((el) => {
+          //   全ての要素からli.currentをremove
+          el.classList.remove('current');
+          // clickしたものにcurrentをadd
+          category.classList.add('current');
+          // スクロール
+          let t = el.classList.contains('current');
 
-  // console.log(client_w, 'test')
-  // setFn()
-  let currentIndex = 0
+          if (true === t) {
+            console.log(currentIndex);
+            // return currentIndex
+            currentIndexMultiply = currentIndex;
+          } else {
+            ++currentIndex;
+          }
+        });
 
-  arrs.forEach((category) => {
-    category.addEventListener('click', () => {
-      console.log(client_w, 'dfguilho;gfdxhghgfxg')
-      currentIndex = 0
-      arrs.forEach((el) => {
-        //   全ての要素からli.currentをremove
-        el.classList.remove('current')
-        // clickしたものにcurrentをadd
-        category.classList.add('current')
-        // スクロール
-        let t = el.classList.contains('current')
+        container_articles.style.transform = `translateX(${
+          -1 * client_w * currentIndexMultiply
+        }px)`;
+      });
+    });
+  }
 
-        if (true === t) {
-          console.log(currentIndex)
-          // return currentIndex
-          currentIndexMultiply = currentIndex
-        } else {
-          ++currentIndex
-        }
-        // conso
-      })
-
-      // let t = category.classList.contains('current')
-      // client_wリサイズで計算する
-      container_articles.style.transform = `translateX(${
-        -1 * client_w * currentIndexMultiply
-      }px)`
-    })
-  })
-
-  const rightArrow = document.getElementById('rightArrow')
-  const leftArrow = document.getElementById('leftArrow')
+  const rightArrow = document.getElementById('rightArrow');
+  const leftArrow = document.getElementById('leftArrow');
 
   const recommend_section_frame = document.querySelector(
     '.recommend_section_frame',
-  )
+  );
   const blog_article_recommend_section = document.querySelectorAll(
     '.blog_article_recommend_section',
-  )
-  console.log(blog_article_recommend_section)
+  );
+  console.log(blog_article_recommend_section);
 
-  let recommend_section_frame_width
+  let recommend_section_frame_width;
   function recoFn() {
-    recommend_section_frame_width = recommend_section_frame.clientWidth
-
-    container_articles.style.width = recommend_section_frame_width
-    console.log(recommend_section_frame_width, 'fn内部')
+    recommend_section_frame_width = recommend_section_frame.clientWidth;
   }
-  // 固定ページエラー
-  // setInterval(recoFn, 1000)
-  // 配列から一つずれるから*-1して移動すレバいい
-  // 元々の配列の先頭が一番前の時*1する
-  console.log(recommend_section_frame_width, 'recoWidth')
-  let countRecommend = 0
+
+  recoFn();
+  console.log(recommend_section_frame_width, 'recoWidth');
+  let countRecommend = 0;
   function Arrow() {
     countRecommend === 0
       ? leftArrow.classList.add('arrow_none')
-      : leftArrow.classList.remove('arrow_none')
+      : leftArrow.classList.remove('arrow_none');
     return {
       rightArrowFn: function () {
-        console.log(recommend_section_frame_width, '非同期width変数')
-        console.log(countRecommend)
+        console.log(recommend_section_frame_width, '非同期width変数');
+        console.log(countRecommend);
 
-        countRecommend++
-        console.log(countRecommend, 'remove')
+        countRecommend++;
+        console.log(countRecommend, 'remove');
         recommend_section_frame.style.transform = `translateX(${
           -1 * recommend_section_frame_width * countRecommend
-        }px)`
+        }px)`;
         if (blog_article_recommend_section.length < countRecommend + 1) {
-          countRecommend = 0
+          countRecommend = 0;
 
           recommend_section_frame.style.transform = `translateX(${
             -1 * recommend_section_frame_width * countRecommend
-          }px)`
+          }px)`;
         }
 
-        console.log(countRecommend)
+        console.log(countRecommend);
 
-        return countRecommend
+        return countRecommend;
       },
       leftArrowFn: function () {
-        countRecommend = countRecommend - 1
-        console.log(countRecommend)
+        countRecommend = countRecommend - 1;
+        console.log(countRecommend);
         recommend_section_frame.style.transform = `translateX(${
           -1 * recommend_section_frame_width * countRecommend
-        }px)`
-        return countRecommend
+        }px)`;
+        return countRecommend;
       },
-    }
+    };
   }
-  const ArrowEle = Arrow()
+  const ArrowEle = Arrow();
 
   leftArrow.addEventListener('click', () => {
-    console.log('left', countRecommend)
+    console.log('left', countRecommend);
 
-    ArrowEle.leftArrowFn()
-    Arrow()
-  })
+    ArrowEle.leftArrowFn();
+    Arrow();
+  });
   rightArrow.addEventListener('click', () => {
-    console.log('right', countRecommend)
+    console.log('right', countRecommend);
 
-    ArrowEle.rightArrowFn()
-    // rightArrowFnのreturn で返ったcountRecommendをArrow()内の  countRecommend === 0
-    //   ? leftArrow.classList.add('arrow_none')
-    //   : leftArrow.classList.remove('arrow_none')で更新するため
+    ArrowEle.rightArrowFn();
 
-    // 固定ページエラー
+    Arrow();
+  });
 
-    Arrow()
-  })
+  turnFirstCategory();
+  replaceFirstNodeBySelected();
 
-  // テスト
-  let firstVal = 9
-  function fn() {
-    return {
-      firstFn: function () {
-        console.log(firstVal)
-
-        firstVal = 8
-        console.log(firstVal)
-        firstVal = 3
-        console.log(firstVal)
-        return firstVal
-      },
-      secondFn: function () {
-        console.log(firstVal, 'secondFn')
-      },
-    }
+  function turnFirstCategory() {
+    let scroll = document.getElementById('overflow-flick');
+    document.body.addEventListener('click', () => {
+      scroll.scrollLeft = 0;
+    });
   }
-  const valfb = fn()
-  valfb.firstFn()
-  valfb.secondFn()
 
-  // local JS testで加える
-  // Filter関数でclickしたものを絞り、map関数でlisを絞ったものを先頭に配列を新たに作り、表示する
+  function replaceFirstNodeBySelected() {
+    let convertSelectToFirstEle;
 
-  // 定数名が分かりにくいので再代入
-  // let categoryArrs = arrs
-  // let u = []
-  // console.log(categoryArrs, 'flicevent')
-  // u = arrs
-  // console.log(u)
-  // console.log(typeof u)
-  // const resul = u.filter((word) => word.length > 6)
-  // console.log(resul)
-  // categoryArrs.unshift('u', 'k')
-  // console.log(categoryArrs)
-  // クリックしたliを先頭に移動
+    let categories = document.querySelectorAll('.container_category ul li');
 
-  // let ordercategoryArrs = categoryArrs.unshift(
-  //   categoryArrs.filter((categoryArr) =>
-  //     categoryArr.classList.contains('current'),
-  //   ),
-  // )
-  // let ar = []
-  // // console.log(ordercategoryArrs)
-  // const arrResult = categoryArrs.filter(
-  //   (categoryAr) => categoryAr.classList.contain('current'),
-  //   //   .map((categoryArr) => {
-  //   //   ar = categoryArr
-  //   //   console.log(ar)
-  //   // }),
-  // )
-  // console.log(arrResult)
+    let arrs = Array.from(categories);
+    arrs.forEach((arr) => {
+      // console.log(INIT_CATEGORIES);
+      arr.addEventListener('click', () => {
+        $ul.innerHTML = '';
+        slideCategory();
+        init(arr.innerText);
 
-  // console.log(result)
-
-  // console.log(categoryArr)
-
-  /**
-   * unshiftがappendChildに置き換えられて
-   * spliceがNode.removeChild()になる
-   */
-  // 最初のnodeをletで取得してクリックするたびにappendする
-  // 最後にcurrent部分んだけinsertBeforeを用いる
-  let scroll = document.getElementById('overflow-flick')
-  document.body.addEventListener('click', () => {
-    scroll.scrollLeft = 0
-  })
-
-  let ul = document.getElementById('categories')
-  let startNode
-  let currentCategoryText
-  arrs.forEach((arr) => {
-    arr.addEventListener('click', () => {
-      //クリックイベントを追加
-
-      window.scroll({ left: 0, behavior: 'smooth' })
-
-      let theFirstChild = ul.firstChild
-      startNode = ul.insertBefore(
-        arrs.find((arr) => arr.classList.contains('current')),
-        theFirstChild,
-      )
-      currentCategoryText = arrs.find((arr) =>
-        arr.classList.contains('current'),
-      )
-    })
-  })
-  setTimeout(() => {
-    console.log(arrs)
-    console.log(currentCategoryText)
-    console.log(startNode, 'startNode')
-  }, 3000)
-  // setTimeout(() => {
-  //   console.log(arrs)
-  //   console.log(currentCategoryText)
-  // }, 10000)
-
-  // setInterval(jji)
-
-  // すべてのliに同じmargin-rightとmargin-leftをつけたらレイアウトは崩れない
+        let theFirstChild = $ul.firstChild;
+        convertSelectToFirstEle = $ul.insertBefore(
+          arrs.find((arr) => arr.classList.contains('current')),
+          theFirstChild,
+        );
+      });
+    });
+  }
 }

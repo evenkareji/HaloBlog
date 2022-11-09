@@ -49,7 +49,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 /* current_category */
 li.current {
   font-weight: bold;
-  border-bottom: 3px solid #000;
+  /* border-bottom: 3px solid #000; */
 }
 /* common */
 body {
@@ -57,6 +57,11 @@ body {
 }
 a {
   text-decoration: none;
+}
+img,
+picture {
+  width: 100%;
+  height: auto;
 }
 ul {
   margin: 0;
@@ -70,6 +75,24 @@ ul {
   max-width: 100%;
   width: 90%;
 }
+.contact-bg {
+  padding: 27px 0 42px;
+  background: #fafafa;
+}
+.contact-bg h1 {
+  margin-bottom: 8px;
+}
+.contact-form {
+  width: 94%;
+  background: #fff;
+  border-radius: 3px;
+  padding: 30px 0;
+  width: 89%;
+  margin: 0 auto;
+  border: 1px solid #999;
+  padding-left: 14px;
+}
+
 ul {
   list-style: none;
   text-decoration: none;
@@ -159,9 +182,6 @@ li.nav-current a:hover {
 .hamburger li + li {
   margin-top: 20px;
 }
-.flick-event {
-  overflow: hidden;
-}
 .footer_back {
   text-align: center;
   background: #000;
@@ -183,33 +203,25 @@ li.nav-current a:hover {
 .overflow-flick {
   white-space: nowrap;
   overflow: scroll;
-  /* width: 480px; */
-  /* width: 400px; */
-
-  background: skyblue;
-  /* position: relative; */
-  /* background-color: #000; */
 }
 .container_category .flex_category {
   display: flex;
 }
 .container_category ul {
   padding-left: 45px;
-  width: 800px;
 }
 .container_category li {
   cursor: pointer;
   user-select: none;
   font-size: 20px;
-  width: 80px;
   text-align: center;
-  margin-right: 18px;
+  color: #5c5c5c;
 }
 .container_category li:hover {
   color: #999;
 }
 .container_category li.current {
-  color: #000;
+  color: blue;
 }
 .container_category li + li {
   margin-left: 36px;
@@ -239,8 +251,7 @@ li.nav-current a:hover {
   height: auto;
   margin-bottom: 30px;
   background: #ffffff;
-  border-radius: 4px;
-  /* height: 50%; */
+
   border: 1px solid #dcdcdc;
 }
 .blog_article:hover {
@@ -298,9 +309,6 @@ li.nav-current a:hover {
   margin-bottom: 14px;
   background: #ffffff;
   border-radius: 4px;
-  /* height: 50%; */
-  /* border: 1px solid #999; */
-  border: 1px solid #999;
 }
 .blog_article_recommend_section:hover {
   border: 1px solid #000;
@@ -389,12 +397,16 @@ li.nav-current a:hover {
 .main-article {
   width: 94%;
 }
+.top {
+  padding-bottom: 50px;
+}
 /* single_PC */
 @media screen and (min-width: 780px) {
   .top {
     display: flex;
     gap: 63px;
   }
+
   .aside-category-recommend {
     display: block;
     width: 300px;

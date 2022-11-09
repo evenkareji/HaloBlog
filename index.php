@@ -1,13 +1,8 @@
 <?php get_header();?>
     <main>
       <div class="container_cate_article_all">
-        <div  id="overflow-flick" class="container_category overflow-flick scroll-to-top-btn">
+        <div id="overflow-flick" class="container_category overflow-flick">
           <ul class="flex_category" id="categories">
-            <li class="current"><a>最新</a></li>
-            <li><a>React</a></li>
-            <li><a>PHP</a></li>
-            <li><a>おすすめ</a></li>
-            <li><a>進行中の企画</a></li>
 
           </ul>
         </div>
@@ -158,7 +153,7 @@ $the_query->the_post();
         </section>
       </div>
       <section class="recommend_section">
-        <h1 class="recommend_h1">おすすめの本</h1>
+        <h1 class="recommend_h1">記事</h1>
         <div
           class="choice_article_recommend_flex choice_recommend_section_frame"
         >
@@ -213,18 +208,12 @@ $the_query->the_post();
           </span>
           <p>トップページへ</p></a
         >
+
       </section>
-      <aside class="category_side_menu">
-        <dl>
-          <dt>全てのカテゴリー</dt>
-          <dd>非同期処理</dd>
-          <dd>デザイン</dd>
-          <dd>UXデザイン</dd>
-        </dl>
-      </aside>
+
     </main>
+    <?php wp_footer();?>
     <?php get_footer();?>
 
-    <?php wp_footer();?>
   </body>
 </html>
