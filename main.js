@@ -1,95 +1,102 @@
 'use-strict';
 {
   let $ul = document.getElementById('categories');
-  let li;
+  let $li;
   let a;
-  let INIT_CATEGORIES;
-  categoriesLists();
-  function categoriesLists() {
-    INIT_CATEGORIES = ['最新', 'React', 'PHP', 'おすすめ', '進行中の企画'];
+  let INIT_CATEGORIES = ['最新', 'React', 'PHP', 'おすすめ', '進行中の企画'];
+  for (i = 0; i < INIT_CATEGORIES.length; ++i) {
+    initialCategory();
+  }
+  function initialCategory() {
+    $li = document.createElement('li');
+    a = document.createElement('a');
+    $li.appendChild(a);
+    a.textContent = INIT_CATEGORIES[i];
+    if (a.textContent === '最新') {
+      $li.classList.add('current');
+    }
+    $ul.appendChild($li);
+  }
+
+  function init(clickContext) {
     for (i = 0; i < INIT_CATEGORIES.length; ++i) {
-      li = document.createElement('li');
-      a = document.createElement('a');
-      li.appendChild(a);
-      a.textContent = INIT_CATEGORIES[i];
-      if (a.textContent === '最新') {
-        li.classList.add('current');
-      }
-      $ul.appendChild(li);
+      INIT_CATEGORIES[i] != clickContext && updateCategory();
     }
   }
-  function init(fff) {
-    for (i = 0; i < INIT_CATEGORIES.length; ++i) {
-      if (INIT_CATEGORIES[i] != fff) {
-        li = document.createElement('li');
-        a = document.createElement('a');
-        li.appendChild(a);
-        a.textContent = INIT_CATEGORIES[i];
 
-        $ul.appendChild(li);
-      }
-    }
+  function updateCategory() {
+    $li = document.createElement('li');
+    a = document.createElement('a');
+    $li.appendChild(a);
+    a.textContent = INIT_CATEGORIES[i];
+
+    $ul.appendChild($li);
   }
 
   const openHumburger = document.querySelector('.open');
   const closeHamburger = document.querySelector('.close');
   const hamburgerMenu = document.querySelector('.hamburger');
   const mask = document.getElementById('mask');
-  const humburgerFn = Humburger();
-  humburgerFn(openHumburger);
-  humburgerFn(closeHamburger);
-  humburgerFn(mask);
-  function Humburger() {
-    function clickHumbergerEvent(clickHumbergar) {
-      if (clickHumbergar === openHumburger) {
-        clickHumbergar.addEventListener('click', () => {
-          hamburgerMenu.classList.add('show');
-          mask.classList.add('mask_box');
-        });
-      } else if (
-        (clickHumbergar === mask) |
-        (clickHumbergar === closeHamburger)
-      ) {
-        clickHumbergar.addEventListener('click', () => {
-          hamburgerMenu.classList.remove('show');
-          mask.classList.remove('mask_box');
-        });
-      }
-    }
-    return clickHumbergerEvent;
+
+  clickHumbergerEvent();
+
+  function clickHumbergerEvent() {
+    clickShow();
+    clickClose();
+    clickMask();
   }
-
-  const $navLists = document.querySelectorAll('.nav-click-currents-color li');
-
-  const navLists = Array.from($navLists);
-
-  navLists.forEach((navList) => {
-    navList.addEventListener('click', () => {
-      navLists.forEach((navAllLists) => {
-        navAllLists.classList.remove('nav-current');
-      });
-      // クリックしたliにadd
-      navList.classList.add('nav-current');
+  function clickShow() {
+    openHumburger.addEventListener('click', () => {
+      hamburgerMenu.classList.add('show');
+      mask.classList.add('mask_box');
     });
-  });
-
-  let categories = document.querySelectorAll('.container_category ul li');
-
-  let arrs = Array.from(categories);
-
-  const container_articles = document.querySelector('.container_articles');
-  console.log(container_articles);
-
-  console.log(container_articles != null);
-
-  let client_w = null;
-  if (container_articles != null) {
-    client_w = container_articles.clientWidth;
   }
-  const flickRange = document.querySelector('.article_category_border');
-  flickRange.addEventListener('touchstart', slideCategory);
+  function clickClose() {
+    closeHamburger.addEventListener('click', () => {
+      hamburgerMenu.classList.remove('show');
+      mask.classList.remove('mask_box');
+    });
+  }
+  function clickMask() {
+    mask.addEventListener('click', () => {
+      hamburgerMenu.classList.remove('show');
+      mask.classList.remove('mask_box');
+    });
+  }
+
+  getCurrentNuv();
+  function getCurrentNuv() {
+    const $navLists = document.querySelectorAll('.nav-click-currents-color li');
+
+    const navLists = Array.from($navLists);
+    navLists.forEach((navList) => {
+      navList.addEventListener('click', () => {
+        navLists.forEach((navAllLists) => {
+          navAllLists.classList.remove('nav-current');
+        });
+        // クリックしたliにadd
+        navList.classList.add('nav-current');
+      });
+    });
+  }
+
+  // const flickRange = document.querySelector('.article_category_border');
+  // flickRange.addEventListener('touchstart', slideCategory);
   slideCategory();
   function slideCategory() {
+    let categories = document.querySelectorAll('.container_category ul li');
+
+    let arrs = Array.from(categories);
+
+    const container_articles = document.querySelector('.container_articles');
+    console.log(container_articles);
+
+    console.log(container_articles != null);
+
+    let client_w = null;
+    if (container_articles != null) {
+      client_w = container_articles.clientWidth;
+    }
     let currentIndex = 0;
 
     arrs.forEach((category) => {
@@ -119,7 +126,8 @@
       });
     });
   }
-
+  /*
+  -----------------*/
   const rightArrow = document.getElementById('rightArrow');
   const leftArrow = document.getElementById('leftArrow');
 
@@ -132,12 +140,12 @@
   console.log(blog_article_recommend_section);
 
   let recommend_section_frame_width;
-  function recoFn() {
+
+  recommendFrame();
+  function recommendFrame() {
     recommend_section_frame_width = recommend_section_frame.clientWidth;
   }
 
-  recoFn();
-  console.log(recommend_section_frame_width, 'recoWidth');
   let countRecommend = 0;
   function Arrow() {
     countRecommend === 0
@@ -145,51 +153,52 @@
       : leftArrow.classList.remove('arrow_none');
     return {
       rightArrowFn: function () {
-        console.log(recommend_section_frame_width, '非同期width変数');
-        console.log(countRecommend);
-
-        countRecommend++;
-        console.log(countRecommend, 'remove');
-        recommend_section_frame.style.transform = `translateX(${
-          -1 * recommend_section_frame_width * countRecommend
-        }px)`;
-        if (blog_article_recommend_section.length < countRecommend + 1) {
-          countRecommend = 0;
-
-          recommend_section_frame.style.transform = `translateX(${
-            -1 * recommend_section_frame_width * countRecommend
-          }px)`;
-        }
-
-        console.log(countRecommend);
+        rigthMove();
+        blog_article_recommend_section.length < countRecommend + 1 &&
+          undoInitialSlide();
 
         return countRecommend;
       },
       leftArrowFn: function () {
-        countRecommend = countRecommend - 1;
-        console.log(countRecommend);
-        recommend_section_frame.style.transform = `translateX(${
-          -1 * recommend_section_frame_width * countRecommend
-        }px)`;
-        return countRecommend;
+        leftMove();
       },
     };
   }
   const ArrowEle = Arrow();
 
   leftArrow.addEventListener('click', () => {
-    console.log('left', countRecommend);
-
     ArrowEle.leftArrowFn();
     Arrow();
   });
   rightArrow.addEventListener('click', () => {
-    console.log('right', countRecommend);
-
     ArrowEle.rightArrowFn();
-
     Arrow();
   });
+
+  function leftMove() {
+    countRecommend = countRecommend - 1;
+
+    recommend_section_frame.style.transform = `translateX(${
+      -1 * recommend_section_frame_width * countRecommend
+    }px)`;
+    return countRecommend;
+  }
+  function rigthMove() {
+    countRecommend++;
+
+    recommend_section_frame.style.transform = `translateX(${
+      -1 * recommend_section_frame_width * countRecommend
+    }px)`;
+  }
+  function undoInitialSlide() {
+    countRecommend = 0;
+
+    recommend_section_frame.style.transform = `translateX(${
+      -1 * recommend_section_frame_width * countRecommend
+    }px)`;
+  }
+  /*
+----------------*/
 
   turnFirstCategory();
   replaceFirstNodeBySelected();
@@ -202,22 +211,18 @@
   }
 
   function replaceFirstNodeBySelected() {
-    let convertSelectToFirstEle;
-
     let categories = document.querySelectorAll('.container_category ul li');
 
     let arrs = Array.from(categories);
     arrs.forEach((arr) => {
-      // console.log(INIT_CATEGORIES);
       arr.addEventListener('click', () => {
         $ul.innerHTML = '';
-        slideCategory();
+
         init(arr.innerText);
 
-        let theFirstChild = $ul.firstChild;
         convertSelectToFirstEle = $ul.insertBefore(
           arrs.find((arr) => arr.classList.contains('current')),
-          theFirstChild,
+          $ul.firstChild,
         );
       });
     });
