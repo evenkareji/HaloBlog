@@ -1,6 +1,8 @@
 'use-strict';
 {
   // TODO:削除した後に再度追加したnodeをクリックできるように
+  // mapかfilterで新しい配列を作るclickされたNodeを元の位置から先頭
+  // 再度クリックした時にclickされなかったさっきのnodeを元の位置にもっていく。
   //原因:不明   ブレークポイントで検証してみる。必ず変数がおかしいはず
 
   // TODO:リアルタイムで画面幅を調整する。Promiseが使えそう
@@ -17,7 +19,7 @@
     a = document.createElement('a');
     $li.appendChild(a);
     a.textContent = INIT_CATEGORIES[INIT_CATEGORIE];
-    if (a.textContent === '最新') {
+    if ('最新' === a.textContent) {
       $li.classList.add('current');
     }
     $ul.appendChild($li);
