@@ -26,10 +26,10 @@
       >
         menu
       </span>
-      <a href="" class="HaloBlog">HaloBlog</a>
+      <a href="" class="HaloBlog" id="el">HaloBlog</a>
 
+      <span class="material-symbols-outlined close close_icon material-icons"> close </span>
       <div class="hamburger">
-        <span class="material-symbols-outlined close close_icon material-icons"> close </span>
         <ul class="nav-click-currents-color">
           <li class="nav-current" id="home"><a href="<?php echo home_url('/')?>" >home</a></li>
           <li id="about"><a href="<?php echo home_url('index.php/about/')?>">about</a></li>
@@ -38,7 +38,7 @@
                 <div class="sidebar">
                         <?php get_sidebar(); ?>
 
-</div>
+                </div>
       </div>
       <div id="mask"></div>
     </header>

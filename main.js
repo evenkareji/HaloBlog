@@ -6,29 +6,74 @@
   //原因:不明   ブレークポイントで検証してみる。必ず変数がおかしいはず
 
   // TODO:リアルタイムで画面幅を調整する。Promiseが使えそう
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const el = document.getElementById('el');
+    const animes = el.innerHTML.trim().split('');
+    // console.log(char);
+
+    // anime.reduce();
+
+    // 今までの蓄積と現在を合体させる
+    el.innerHTML = animes.reduce((accu, currentValue) => {
+      // console.log(accu, 'accu');
+
+      // console.log(currentValue);
+
+      return `${accu}<span class='char'>${currentValue}</span>`;
+      // 第二引数に空文字を入れることで配列の全てがcurrentにくる
+    }, '');
+  });
+
   let categories;
   let cateLists;
   // different:node生成する前にgetInitialCategoryが実行される
   let $ul = document.getElementById('categories');
-  let $li;
-  let a;
-  let INIT_CATEGORIES = ['最新', 'React', 'PHP', 'おすすめ', '進行中の企画'];
+  let $lis = document.querySelectorAll('ul li');
+  console.log($ul);
 
-  for (const INIT_CATEGORIE in INIT_CATEGORIES) {
-    $li = document.createElement('li');
-    a = document.createElement('a');
-    $li.appendChild(a);
-    a.textContent = INIT_CATEGORIES[INIT_CATEGORIE];
-    if ('最新' === a.textContent) {
-      $li.classList.add('current');
-    }
-    $ul.appendChild($li);
-    // getInitialCategory();
+  getOrderNodes();
+  // clickしたもののindexを配列で取得する
+  // その数値番目にappendする
+  function getOrderNodes() {
+    // TODO:ひとつ前でクリックした要素を元の位置に配置する
+    // forEachで
+    //     ひとつ前の変数を獲得してあればいい
+    // その変数番目にDomを差し込む
+    let beforeDomCount = null;
+
+    $lis.forEach(($li) => {
+      ++beforeDomCount;
+      $li.addEventListener('click', () => {
+        console.log('DOM');
+      });
+    });
   }
+
+  // let $li;
+  // let a;
+  // let INIT_CATEGORIES = ['最新', 'React', 'PHP', 'おすすめ', '進行中の企画'];
+  // setTimeout(() => {
+  //   INIT_CATEGORIES[0] = 'こんにちは';
+  //   console.log(INIT_CATEGORIES);
+  // }, 1000);
+  // let INIT_CATEGORIES = [['最新', 'React', 'PHP', 'おすすめ', '進行中の企画']];
+
+  // for (const INIT_CATEGORIE in INIT_CATEGORIES) {
+  //   $li = document.createElement('li');
+  //   a = document.createElement('a');
+  //   $li.appendChild(a);
+  //   a.textContent = INIT_CATEGORIES[INIT_CATEGORIE];
+  //   if ('最新' === a.textContent) {
+  //     $li.classList.add('current');
+  //   }
+  //   $ul.appendChild($li);
+  //   // getInitialCategory();
+  // }
   categories = document.querySelectorAll('.container_category ul li');
-  console.log(categories);
+
   cateLists = Array.from(categories);
-  console.log(cateLists);
+
   // function getInitialCategory() {}
   // 一番先頭に置くとcategoryを押せなくなる;
 
@@ -94,9 +139,10 @@
   }
 
   function selectedToFirstNode(cateList) {
-    $ul.innerHTML = '';
+    // $ul.innerHTML = ''; //消さずに書き換えるnodeを配列のように
 
-    getUpdateCategories(cateList.innerText);
+    // getUpdateCategories(cateList.innerText); //新しく生成したらバグる
+    // getOrderNodes();
 
     convertSelectToFirstEle = $ul.insertBefore(
       cateLists.find((cateList) => cateList.classList.contains('current')),
@@ -108,9 +154,11 @@
     cateLists = Array.from(categories);
     console.log(cateLists, '新しい');
   }
+
   function getUpdateCategories(clickContext) {
+    // 選択したもの以外を新しく生成
     for (const INIT_CATEGORIE in INIT_CATEGORIES) {
-      INIT_CATEGORIES[INIT_CATEGORIE] != clickContext &&
+      clickContext != INIT_CATEGORIES[INIT_CATEGORIE] &&
         updateCategory(INIT_CATEGORIE);
     }
   }
@@ -142,14 +190,18 @@
     clickClose();
     clickMask();
   }
+  const closeShow = document.querySelector('.close_icon');
   function clickShow() {
     openHumburger.addEventListener('click', () => {
+      console.log(closeShow);
+      closeShow.classList.add('close_show');
       hamburgerMenu.classList.add('show');
       mask.classList.add('mask_box');
     });
   }
   function clickClose() {
     closeHamburger.addEventListener('click', () => {
+      closeShow.classList.remove('close_show');
       hamburgerMenu.classList.remove('show');
       mask.classList.remove('mask_box');
     });

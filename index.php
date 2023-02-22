@@ -3,7 +3,11 @@
       <div class="container_cate_article_all">
         <div id="overflow-flick" class="container_category overflow-flick">
           <ul class="flex_category" id="categories">
-
+            <li class="current"><a>最新</a></li>
+            <li><a>React</a></li>
+            <li><a>PHP</a></li>
+            <li><a>おすすめ</a></li>
+            <li><a>進行中の企画</a></li>
           </ul>
         </div>
 
@@ -27,8 +31,12 @@ $the_query->the_post();
 ?>
 
                <article class="blog_article">
+
+
              <a href="<?php the_permalink(); ?>">
+                <div class="">
                   <h3 class="thumbnail"><?php the_post_thumbnail( array( 358, 305 ))?></h3>
+                </div>
                   <dl class="article_inner_blog">
                     <dt><?php the_title();?></dt>
                     <dd><?php the_time('Y年n月j日');?></dd>
